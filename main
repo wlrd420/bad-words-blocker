@@ -1,0 +1,24 @@
+package chat.events;
+
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+public class ChatMod implements Listener {
+    public ChatMod() {
+    }
+
+    public void onChat(AsyncPlayerChatEvent e) {
+        String message = e.getMessage();
+        String[] badWords = new String[]{"idiot", "stupid", "shit"};
+        String[] var4 = badWords;
+        int var5 = badWords.length;
+
+        for(int var6 = 0; var6 < var5; ++var6) {
+            String badWord = var4[var6];
+            if (message.contains(badWord)) {
+                e.setCancelled(true);
+                e.getPlayer().sendMessage("§c§lYou can't use bad words!");
+            }
+        }
+
+    }
